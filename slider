@@ -1,0 +1,368 @@
+<script>
+// Concrete Gallery Code
+/*  Left/Right Arrow Styling  */
+function leftArrowHide() {
+    $("#left-arrow-co").removeClass('arrow-box co').addClass('arrow-end co');
+}
+
+function leftArrowShow() {
+    $("#left-arrow-co").removeClass('arrow-end co').addClass('arrow-box co');
+}
+
+function rightArrowHide() {
+    $("#right-arrow-co").removeClass('arrow-box co').addClass('arrow-end co');
+}
+
+function rightArrowShow() {
+    $("#right-arrow-co").removeClass('arrow-end co').addClass('arrow-box co');
+}
+/*  Hide the CMS nav dots used for styling
+and set the arrows to default styles for Slide 1  */
+$('.navdot-co').hide();
+rightArrowShow();
+leftArrowHide();
+/*  Generate nav dots for each CMS slide  */
+var slideval = 0;
+var cmscount = $("#slides-co").children().length;
+var countconverted = (cmscount - 1) * -100;
+for (i = 0; i < cmscount; i++) {
+    var container = document.getElementById('#nav-co');
+    var div = document.createElement("div");
+    div.className = 'navdot-co';
+    div.id = 'slide' + i;
+    div.className += 'generated-co';
+    var slidenumber = document.createElement("div");
+    slidenumber.innerHTML = i + 1;
+    slidenumber.className = 'navdot-number-co';
+    div.append(slidenumber);
+    document.getElementById('nav-co').append(div);
+}
+
+/*  Activate the generated nav dot for Slide 1. */
+$("#slide0-co").addClass("selected");
+
+/*  Click detection for nav dots. Activate the corresponding slide 
+and update the left/right arrows if on the first or last slide  */
+$(".navdot-co").click(function() {
+    $(".navdot-co").removeClass("selected");
+    $(this).addClass("selected");
+    var slide = $(this).attr('id');
+    var num = slide.replace('slide', '');
+    slide = parseInt(num);
+    var multiplier = slide * -100;
+    slideval = multiplier;
+    if (slide == 0) {
+        leftArrowHide();
+        rightArrowShow();
+    } else if (slide == cmscount - 1) {
+        rightArrowHide();
+        leftArrowShow();
+    } else {
+        leftArrowShow();
+        rightArrowShow();
+    }
+    moveSlides(slideval);
+    $('#animationTrigger-co').click();
+});
+
+/*  Right Arrow click detection and actions. */
+$("#right-arrow-co").click(function() {
+    if (slideval > countconverted) {
+        leftArrowShow();
+        slideval += -100;
+        moveSlides(slideval);
+        updatenav();
+        $('#animationTrigger-co').click();
+        if (slideval == countconverted) {
+            rightArrowHide();
+        }
+    }
+});
+/*  Left Arrow click detection and actions. */
+$("#left-arrow-co").click(function() {
+    if (slideval < 0) {
+        rightArrowShow();
+        slideval += 100;
+        moveSlides();
+        updatenav();
+        $('#animationTrigger-co').click();
+        if (slideval == 0) {
+            leftArrowHide();
+        }
+    }
+});
+/*  Function called on by arrow and nav dot clicks to move to
+the selected slide  */
+function moveSlides(measurement) {
+    $('#slides-co').css({
+        '-webkit-transform': 'translateX(' + slideval + '%)',
+        '-moz-transform': 'translateX(' + slideval + '%)',
+        '-ms-transform': 'translateX(' + slideval + '%)',
+        '-o-transform': 'translateX(' + slideval + '%)',
+        'transform': 'translateX(' + slideval + '%)'
+    });
+}
+/*  Update nav dots so that the active dot corresponds to the 
+active slide  */
+function updatenav() {
+    $(".navdot-co").removeClass("selected");
+    var slides = $('.generated-co');
+    for (i = 0; i < slides.length; i++) {
+        var slide = slides[i].id;
+        var num = slide.replace('slide', '');
+        slide = parseInt(num);
+        var multiplier = slide * -100;
+        if (multiplier == slideval) {
+            $("#slide-co" + i).addClass("selected");
+        }
+    }
+} 
+</script>
+
+  /* Asphalt Gallery already working. The script is in project settings, before body tag. Same script is used for latest news in homepages. So no new script needed for that here */
+
+
+<script>
+// Heavy Equipment Gallery Code
+/*  Left/Right Arrow Styling  */
+function leftArrowHide() {
+    $("#left-arrow-he").removeClass('arrow-box he').addClass('arrow-end he');
+}
+
+function leftArrowShow() {
+    $("#left-arrow-he").removeClass('arrow-end he').addClass('arrow-box he');
+}
+
+function rightArrowHide() {
+    $("#right-arrow-he").removeClass('arrow-box he').addClass('arrow-end he');
+}
+
+function rightArrowShow() {
+    $("#right-arrow-he").removeClass('arrow-end he').addClass('arrow-box he');
+}
+/*  Hide the CMS nav dots used for styling
+and set the arrows to default styles for Slide 1  */
+$('.navdot-he').hide();
+rightArrowShow();
+leftArrowHide();
+/*  Generate nav dots for each CMS slide  */
+var slideval = 0;
+var cmscount = $("#slides-he").children().length;
+var countconverted = (cmscount - 1) * -100;
+for (i = 0; i < cmscount; i++) {
+    var container = document.getElementById('#nav-he');
+    var div = document.createElement("div");
+    div.className = 'navdot-he';
+    div.id = 'slide' + i;
+    div.className += 'generated-sc';
+    var slidenumber = document.createElement("div");
+    slidenumber.innerHTML = i + 1;
+    slidenumber.className = 'navdot-number-he';
+    div.append(slidenumber);
+    document.getElementById('nav-he').append(div);
+}
+
+/*  Activate the generated nav dot for Slide 1. */
+$("#slide0-he").addClass("selected");
+
+/*  Click detection for nav dots. Activate the corresponding slide 
+and update the left/right arrows if on the first or last slide  */
+$(".navdot-he").click(function() {
+    $(".navdot-he").removeClass("selected");
+    $(this).addClass("selected");
+    var slide = $(this).attr('id');
+    var num = slide.replace('slide', '');
+    slide = parseInt(num);
+    var multiplier = slide * -100;
+    slideval = multiplier;
+    if (slide == 0) {
+        leftArrowHide();
+        rightArrowShow();
+    } else if (slide == cmscount - 1) {
+        rightArrowHide();
+        leftArrowShow();
+    } else {
+        leftArrowShow();
+        rightArrowShow();
+    }
+    moveSlides(slideval);
+    $('#animationTrigger-he').click();
+});
+
+/*  Right Arrow click detection and actions. */
+$("#right-arrow-he").click(function() {
+    if (slideval > countconverted) {
+        leftArrowShow();
+        slideval += -100;
+        moveSlides(slideval);
+        updatenav();
+        $('#animationTrigger-he').click();
+        if (slideval == countconverted) {
+            rightArrowHide();
+        }
+    }
+});
+/*  Left Arrow click detection and actions. */
+$("#left-arrow-he").click(function() {
+    if (slideval < 0) {
+        rightArrowShow();
+        slideval += 100;
+        moveSlides();
+        updatenav();
+        $('#animationTrigger-he').click();
+        if (slideval == 0) {
+            leftArrowHide();
+        }
+    }
+});
+/*  Function called on by arrow and nav dot clicks to move to
+the selected slide  */
+function moveSlides(measurement) {
+    $('#slides-he').css({
+        '-webkit-transform': 'translateX(' + slideval + '%)',
+        '-moz-transform': 'translateX(' + slideval + '%)',
+        '-ms-transform': 'translateX(' + slideval + '%)',
+        '-o-transform': 'translateX(' + slideval + '%)',
+        'transform': 'translateX(' + slideval + '%)'
+    });
+}
+/*  Update nav dots so that the active dot corresponds to the 
+active slide  */
+function updatenav() {
+    $(".navdot-he").removeClass("selected");
+    var slides = $('.generated-co');
+    for (i = 0; i < slides.length; i++) {
+        var slide = slides[i].id;
+        var num = slide.replace('slide', '');
+        slide = parseInt(num);
+        var multiplier = slide * -100;
+        if (multiplier == slideval) {
+            $("#slide-he" + i).addClass("selected");
+        }
+    }
+} 
+</script>
+
+
+
+
+<script>
+  // Service Center Gallery Code
+/*  Left/Right Arrow Styling  */
+function leftArrowHide() {
+    $("#left-arrow-sc").removeClass('arrow-box sc').addClass('arrow-end sc');
+}
+
+function leftArrowShow() {
+    $("#left-arrow-sc").removeClass('arrow-end sc').addClass('arrow-box sc');
+}
+
+function rightArrowHide() {
+    $("#right-arrow-sc").removeClass('arrow-box sc').addClass('arrow-end sc');
+}
+
+function rightArrowShow() {
+    $("#right-arrow-sc").removeClass('arrow-end sc').addClass('arrow-box sc');
+}
+/*  Hide the CMS nav dots used for styling
+and set the arrows to default styles for Slide 1  */
+$('.navdot-sc').hide();
+rightArrowShow();
+leftArrowHide();
+/*  Generate nav dots for each CMS slide  */
+var slideval = 0;
+var cmscount = $("#slides-sc").children().length;
+var countconverted = (cmscount - 1) * -100;
+for (i = 0; i < cmscount; i++) {
+    var container = document.getElementById('#nav-sc');
+    var div = document.createElement("div");
+    div.className = 'navdot-sc';
+    div.id = 'slide' + i;
+    div.className += 'generated-sc';
+    var slidenumber = document.createElement("div");
+    slidenumber.innerHTML = i + 1;
+    slidenumber.className = 'navdot-number-sc';
+    div.append(slidenumber);
+    document.getElementById('nav-sc').append(div);
+}
+
+/*  Activate the generated nav dot for Slide 1. */
+$("#slide0-sc").addClass("selected");
+
+/*  Click detection for nav dots. Activate the corresponding slide 
+and update the left/right arrows if on the first or last slide  */
+$(".navdot-sc").click(function() {
+    $(".navdot-sc").removeClass("selected");
+    $(this).addClass("selected");
+    var slide = $(this).attr('id');
+    var num = slide.replace('slide', '');
+    slide = parseInt(num);
+    var multiplier = slide * -100;
+    slideval = multiplier;
+    if (slide == 0) {
+        leftArrowHide();
+        rightArrowShow();
+    } else if (slide == cmscount - 1) {
+        rightArrowHide();
+        leftArrowShow();
+    } else {
+        leftArrowShow();
+        rightArrowShow();
+    }
+    moveSlides(slideval);
+    $('#animationTrigger-sc').click();
+});
+
+/*  Right Arrow click detection and actions. */
+$("#right-arrow-sc").click(function() {
+    if (slideval > countconverted) {
+        leftArrowShow();
+        slideval += -100;
+        moveSlides(slideval);
+        updatenav();
+        $('#animationTrigger-sc').click();
+        if (slideval == countconverted) {
+            rightArrowHide();
+        }
+    }
+});
+/*  Left Arrow click detection and actions. */
+$("#left-arrow-sc").click(function() {
+    if (slideval < 0) {
+        rightArrowShow();
+        slideval += 100;
+        moveSlides();
+        updatenav();
+        $('#animationTrigger-sc').click();
+        if (slideval == 0) {
+            leftArrowHide();
+        }
+    }
+});
+/*  Function called on by arrow and nav dot clicks to move to
+the selected slide  */
+function moveSlides(measurement) {
+    $('#slides-sc').css({
+        '-webkit-transform': 'translateX(' + slideval + '%)',
+        '-moz-transform': 'translateX(' + slideval + '%)',
+        '-ms-transform': 'translateX(' + slideval + '%)',
+        '-o-transform': 'translateX(' + slideval + '%)',
+        'transform': 'translateX(' + slideval + '%)'
+    });
+}
+/*  Update nav dots so that the active dot corresponds to the 
+active slide  */
+function updatenav() {
+    $(".navdot-sc").removeClass("selected");
+    var slides = $('.generated-sc');
+    for (i = 0; i < slides.length; i++) {
+        var slide = slides[i].id;
+        var num = slide.replace('slide', '');
+        slide = parseInt(num);
+        var multiplier = slide * -100;
+        if (multiplier == slideval) {
+            $("#slide-sc" + i).addClass("selected");
+        }
+    }
+} 
+</script>
